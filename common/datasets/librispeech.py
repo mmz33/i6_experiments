@@ -3,7 +3,7 @@ This file contains helper functions for the (common) pipeline steps needed to us
 It will download and convert the corpus parts that are used in later steps.
 (and ONLY those, no unneeded corpus jobs will be registered as output)
 
-The corpora can be accessed in 3 ways:
+The datasets can be accessed in 3 ways:
  - as bliss xml with a specific audio format: get_bliss_corpus_dict
  - as meta.System.CorpusObject with a specific format and duration set: get_corpus_object_dict
  - as ogg zip file (containing .oggs): get_ogg_zip_dict
@@ -148,7 +148,7 @@ def get_bliss_corpus_dict(audio_format="flac", create_alias_with_prefix=None):
 
     def _merge_corpora(corpora, name):
         merge_job = MergeCorporaJob(
-            corpora=corpora, name=name, merge_strategy=MergeStrategy.FLAT
+            bliss_corpora=corpora, name=name, merge_strategy=MergeStrategy.FLAT
         )
         if create_alias_with_prefix:
             merge_job.add_alias(
